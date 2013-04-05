@@ -1,0 +1,18 @@
+<h1>Listing Clients</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Actions</th>
+
+    </tr>
+  <thead>
+  <tbody>
+    <%= render @clients %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Client', new_client_path, :class => "btn btn-primary" %>

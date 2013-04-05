@@ -1,0 +1,2 @@
+module LdapsyncsHelper
+end

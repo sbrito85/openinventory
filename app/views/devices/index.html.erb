@@ -1,0 +1,19 @@
+<h1>Devices</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Actions</th>   
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @devices %>  
+  <tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Device', new_device_path, :class => "btn btn-primary" %>

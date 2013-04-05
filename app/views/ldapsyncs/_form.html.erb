@@ -1,0 +1,8 @@
+<%= simple_form_for(@ldapsync) do |f| %>
+ 
+ <%= f.input :username, as: :text, input_html: { rows: "1" } %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

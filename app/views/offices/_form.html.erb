@@ -1,0 +1,11 @@
+<%= simple_form_for(@office, html: {class: "form-horizontal"}) do |f| %>
+  <% f.error_notification %>
+    
+  <%= f.input :office, as: :text, input_html: { rows: "1" } %>
+  <%= f.input :sitecode, as: :text, input_html: { rows: "1" } %>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

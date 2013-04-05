@@ -1,0 +1,18 @@
+<h1>Listing Offices</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Office</th>
+      <th>Site Code</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render @offices %>
+</tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Office', new_office_path, :class => "btn btn-primary" %>

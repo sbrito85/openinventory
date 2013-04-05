@@ -1,0 +1,11 @@
+<%= simple_form_for(@client, html: {class: 'form-horizontal'}) do |f| %>
+
+  <%= f.error_notification %>
+  <%= f.full_error :image_file_size, class: "alert alert-error" %>
+  <%= f.full_error :image_content_type, class: "alert alert-error" %>
+  <%= f.input :client %>
+ 
+  <div class="form-actions">
+    <%= f.submit :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

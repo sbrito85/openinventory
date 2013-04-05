@@ -1,0 +1,7 @@
+<tr>
+	<td><%= image_tag device.image(:small) %></td>
+  <td><%= link_to device.make, device_path(device) %></td>
+  <td><%= device.model %></td>
+
+  <td><%= link_to 'Edit', edit_device_path(device), :class => 'btn btn-mini btn-info'  %>|<%= link_to 'Delete', device_path(device), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %></td>
+</tr>

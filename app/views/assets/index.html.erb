@@ -1,0 +1,21 @@
+
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sortable "Asset", "Assets" %></th>
+      <th><%= sortable "assigned_to", "Assigned To" %></th>
+
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @assets %>
+  </tbody>
+</table>
+<div class="pagination-centered">
+  <%= will_paginate @assets %>
+</div>
+<%= link_to 'New Asset', new_asset_path, :class => 'btn btn-primary' %>

@@ -1,0 +1,2 @@
+lass HomeController < ApplicationController
+end

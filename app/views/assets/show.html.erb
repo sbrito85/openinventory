@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span6 offset3">
+    <div class="well">
+      <p>
+        <b>Model:</b>
+        <%= @asset.device.model %>
+      </p>
+
+      <p>
+        <b>Serial:</b>
+        <%= @asset.serial %>
+      </p>
+
+      <p>
+        <b>Asset:</b>
+        <%= @asset.asset %>
+      </p>
+
+      <p>
+        <b>Office:</b>
+        <%= @asset.office.office %>
+      </p>
+
+      <p>
+        <b>Assigned to:</b>
+        <%= @asset.assigned_to %>
+      </p>
+
+      <p>
+        <b>Po num:</b>
+        <%= @asset.po_num %>
+      </p>
+
+      <p>
+        <b>Comments:</b>
+        <%= @asset.comments %>
+      </p>
+
+      <p>
+        <b>Aquired:</b>
+        <%= @asset.aquired %>
+      </p>
+
+      <p>
+        <b>Refresh:</b>
+        <%= @asset.refresh %>
+      </p>
+
+      <p>
+        <b>Machine name:</b>
+        <%= @asset.machine_name %>
+      </p>
+
+      <p>
+        <b>Disposed:</b>
+        <%= @asset.disposed %>
+      </p>
+
+      <p>
+        <b>Edited by:</b>
+        <%= @asset.user.username %>
+      </p>
+
+
+      <%= link_to 'Edit', edit_asset_path(@asset) %> |
+      <%= link_to 'Back', assets_path %>
+    </div>
+  </div>
+</div>

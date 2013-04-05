@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  model: MyString
+  serial: MyString
+  asset: MyString
+  office: MyString
+  assigned_to: MyString
+  po_num: MyString
+  comments: MyText
+  aquired: 2013-04-01
+  refresh: 2013-04-01
+  machine_name: MyString
+  disposed: 
+  edited_by: 
+
+two:
+  model: MyString
+  serial: MyString
+  asset: MyString
+  office: MyString
+  assigned_to: MyString
+  po_num: MyString
+  comments: MyText
+  aquired: 2013-04-01
+  refresh: 2013-04-01
+  machine_name: MyString
+  disposed: 
+  edited_by: 

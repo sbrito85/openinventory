@@ -1,0 +1,15 @@
+@import 'bootstrap';
+
+body{
+	padding-top: 60px;
+
+}
+
+@import 'bootstrap-responsive';
+@import 'bootstrap-datetimepicker';
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
