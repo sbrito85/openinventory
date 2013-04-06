@@ -1,70 +1,68 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
   <div class="span6 offset3">
+     <% if @asset.disposed == true %>
+      <div class="alert alert-error">
+        <b><%= @asset.asset %></b> has been decommisioned
+      </div>
+     <% end %>
     <div class="well">
-      <p>
-        <b>Model:</b>
-        <%= @asset.device.model %>
-      </p>
+      <div class="media">
+        <a class="pull-left" href="#">
+          <% if @asset.device.image_file_name.nil? %>
+            <%= image_tag "monitor.png", :class => "media-object" %>
+          <% else %>
+            <%= image_tag @asset.device.image(:small) %>
+          <%end%>
+        </a>
+        <div class="media-body">
+            <div class="media">
+              <h4 class="media-heading"><%= @asset.device.make %> <%= @asset.device.model %> - <%= @asset.asset %></h4>
+          <b>Serial:</b>
+          <%= @asset.serial %></br>
+          <b>Name:</b>
+          <%= @asset.machine_name %></br>
+          <b>Aquired:</b>
+        <%= @asset.aquired %></br>
+          <b>Refresh Date:</b>
+        <%= @asset.refresh %></br>
+        <b>Po number:</b>
+        <%= @asset.po_num %></br>
+        <b>Comments:</b>
+        <%= @asset.comments %></br>
+          
+          </div>
+        </div>      
+    </div>
+  </div>
+    
 
-      <p>
-        <b>Serial:</b>
-        <%= @asset.serial %>
-      </p>
+    <div class="well">
+      <div class="media">
+        <a class="pull-left" href="#">
 
-      <p>
-        <b>Asset:</b>
-        <%= @asset.asset %>
-      </p>
-
-      <p>
+            <%= image_tag "user.png" %>
+        </a>
+        <div class="media-body">
+        
+        <h4 class="media-heading">Assigned To: <%= @asset.assigned_to %></h4>
+     
         <b>Office:</b>
         <%= @asset.office.office %>
-      </p>
+      </div>
 
-      <p>
-        <b>Assigned to:</b>
-        <%= @asset.assigned_to %>
-      </p>
-
-      <p>
-        <b>Po num:</b>
-        <%= @asset.po_num %>
-      </p>
-
-      <p>
-        <b>Comments:</b>
-        <%= @asset.comments %>
-      </p>
-
-      <p>
-        <b>Aquired:</b>
-        <%= @asset.aquired %>
-      </p>
-
-      <p>
-        <b>Refresh:</b>
-        <%= @asset.refresh %>
-      </p>
-
-      <p>
-        <b>Machine name:</b>
-        <%= @asset.machine_name %>
-      </p>
-
-      <p>
-        <b>Disposed:</b>
-        <%= @asset.disposed %>
-      </p>
-
-      <p>
-        <b>Edited by:</b>
-        <%= @asset.user.username %>
-      </p>
-
-
-      <%= link_to 'Edit', edit_asset_path(@asset) %> |
-      <%= link_to 'Back', assets_path %>
     </div>
+  </div>
+    <div class="well">
+
+        <b>Edited by:</b>
+        <%= @asset.user.username %></br>
+        <b>Last Updated:</b>
+        <%= @asset.updated_at %></br>
+         <b>Created:</b>
+        <%= @asset.created_at %></br>
+    </div>
+    <%= link_to 'Edit', edit_asset_path(@asset) %> |
+      <%= link_to 'Back', assets_path %>
   </div>
 </div>

@@ -1,8 +1,8 @@
 Openinventory::Application.routes.draw do
+  resources :people
+
+
   resources :assets
-
-
-  resources :ldapsyncs
 
 
   devise_for :users

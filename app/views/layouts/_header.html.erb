@@ -10,15 +10,29 @@
 		<% if user_signed_in? %>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
-					<li class="active"><%= link_to "Home", root_path %></li>
-					<li><%= link_to "Clients", clients_path %></li>
-      		<li><%= link_to "Devices", devices_path %></li>
-      		<li><%= link_to "Offices", offices_path %></li>
+					<li><%= link_to "Assets", root_path %></li>
+					<li><%= link_to "People", people_path %></li>
+					
 			</ul>
-
+			<ul class="nav pull-right">
+<li class="dropdown">
+					<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
+						Setup
+      			<b class="caret"></b>
+    				</a>
+    				<ul class="dropdown-menu">
+							<li><%= link_to "Clients", clients_path %></li>
+      				<li><%= link_to "Devices", devices_path %></li>
+      				<li><%= link_to "Offices", offices_path %></li>
+      				<li class="nav-header"><%= current_user.username %></li>
+      				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      			</ul>
+      		</li>
+				</ul>
+		
 		<%= form_tag assets_path, :class => "navbar-search form-search pull-right", :method => 'get' do %>
-		<%= current_user.username %>
-		<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+		
+		
 
 			<div class="input-append">
 				<%= text_field_tag :search, params[:search], :class => 'span2 search-query', placeholder: "Search" %>

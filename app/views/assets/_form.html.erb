@@ -15,7 +15,7 @@
 <%= simple_form_for(@asset, html: {  :autocomplete => :off, class: "form-vertical"}) do |f| %>
 <div class="row">
   <div class="span4 offset2">
-    <%= f.input :assigned_to, placeholder: "Assigned To", label: false, :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_ldapusers.to_s] } %>
+    <%= f.input :assigned_to, placeholder: "Assigned To", label: false, :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_people.to_s] } %>
     <%= f.input :asset, as: :string, placeholder: "Asset Number", label: false %>
     <%= f.input :serial, as: :string, placeholder: "Serial Number",label: false %>
     

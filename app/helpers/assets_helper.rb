@@ -2,8 +2,8 @@ module AssetsHelper
 	def get_models
   Device.uniq.pluck(:id)    
 end 
-def get_ldapusers
-  Ldapsync.uniq.pluck(:username)    
+def get_people
+  Person.uniq.pluck(:username)    
 end
 def get_clients
   Client.uniq.pluck(:client)    

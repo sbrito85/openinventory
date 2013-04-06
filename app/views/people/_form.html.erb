@@ -1,0 +1,14 @@
+<%= simple_form_for(@person, :html => {:class => "form-horizontal"}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.input :username %>
+  	<%= f.input :department %>
+  	<%= f.input :title %>
+  	<%= f.input :office %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+<% end %>

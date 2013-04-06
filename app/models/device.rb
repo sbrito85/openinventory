@@ -1,5 +1,5 @@
 class Device < ActiveRecord::Base
-  attr_accessible :make, :model, :assettype, :image
+  attr_accessible :make, :model, :assettype, :image,:image_file_name
 
   validates :make, presence: true
   validates :assettype, presence: true
