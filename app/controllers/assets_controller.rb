@@ -8,8 +8,8 @@ class AssetsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @assets }
-      format.csv { send_data text: @assets.to_csv }
-      format.xls { send_data text: @assets.to_csv(col_sep: "\t") }
+      format.csv { render text: @assets.to_csv }
+      format.xls #{ render text: @assets.to_csv(col_sep: "\t") }
     end
   end
 
@@ -37,7 +37,7 @@ class AssetsController < ApplicationController
 
   # GET /assets/1/edit
   def edit
-    @asset = current_user.asset.find(params[:id])
+    @asset = Asset.find(params[:id])
   end
 
   # POST /assets
@@ -83,7 +83,7 @@ class AssetsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
 
   def sort_column

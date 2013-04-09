@@ -17,8 +17,31 @@
  			 
 			 </div>
 		</div>
-				<%= link_to 'Edit', edit_person_path(@person) %> |
-				<%= link_to 'Back', people_path %>
+
+		<% @person.asset.each do |asset| %>
+			<div class="well">
+			<div class="media">
+				<a class="pull-left" href="#">
+					<% if asset.device.image_file_name.nil? %>
+						<%= image_tag "monitor.png", :class => "media-object" %>
+					<% else %>
+						<%= image_tag asset.device.image(:small) %>
+					<%end%>
+				</a>
+				<div class="media-body">
+					<div class="media">
+						<h4 class="media-heading"> <%= asset.device.make%><%= asset.device.model%> - <%= link_to asset.asset, asset_path(asset.id) %></h4>
+						<b>Serial:</b> <%= asset.serial %></br>
+					  <b>Name:</b> <%= asset.machine_name %></br>
+					  <b>Refresh:</b> <%= asset.refresh %></br>
+			 	</div>
+ 			 </div>
+ 			 
+			 </div>
+		</div>
+		<% end %>
+		<%= link_to 'Edit', edit_person_path(@person) %> |
+		<%= link_to 'Back', people_path %>
 		
 	</div>
 </div>

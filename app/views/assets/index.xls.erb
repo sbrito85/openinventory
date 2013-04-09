@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Assets">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Asset Tag</Data></Cell>
+        <Cell><Data ss:Type="String">Make</Data></Cell>
+        <Cell><Data ss:Type="String">Model</Data></Cell>
+        <Cell><Data ss:Type="String">Assigned To</Data></Cell>
+        <Cell><Data ss:Type="String">Office</Data></Cell>
+        <Cell><Data ss:Type="String">Aquired</Data></Cell>
+        <Cell><Data ss:Type="String">Refresh Date</Data></Cell>
+        <Cell><Data ss:Type="String">Machine Name</Data></Cell>
+        <Cell><Data ss:Type="String">Created At</Data></Cell>
+        <Cell><Data ss:Type="String">Last Updated</Data></Cell>
+      </Row>
+    <% @assets.each do |asset| %>
+      <% if asset.disposed == false %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= asset.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.device.make %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.device.model %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.assigned_to %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.office.office %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.aquired %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.refresh %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.machine_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.updated_at %></Data></Cell>
+
+      </Row>
+      <% end %>
+    <% end %>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="Retired Assets">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Asset Tag</Data></Cell>
+        <Cell><Data ss:Type="String">Make</Data></Cell>
+        <Cell><Data ss:Type="String">Model</Data></Cell>
+        <Cell><Data ss:Type="String">Assigned To</Data></Cell>
+        <Cell><Data ss:Type="String">Office</Data></Cell>
+        <Cell><Data ss:Type="String">Aquired</Data></Cell>
+        <Cell><Data ss:Type="String">Refresh Date</Data></Cell>
+        <Cell><Data ss:Type="String">Machine Name</Data></Cell>
+        <Cell><Data ss:Type="String">Created At</Data></Cell>
+        <Cell><Data ss:Type="String">Last Updated</Data></Cell>
+      </Row>
+    <% @assets.each do |asset| %>
+      <% if asset.disposed == true %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= asset.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.device.make %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.device.model %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.assigned_to %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.office.office %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.aquired %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.refresh %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.machine_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.updated_at %></Data></Cell>
+
+      </Row>
+      <% end %>
+    <% end %>
+    </Table>
+    
+  </Worksheet>
+</Workbook>

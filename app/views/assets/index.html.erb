@@ -1,7 +1,10 @@
 
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
-
+<%= link_to 'New Asset', new_asset_path, :class => 'btn btn-primary' %>
+<div class="pull-right">
+  <%= link_to image_tag("excel.png"), assets_path(format: "xls") %>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,4 +21,4 @@
 <div class="pagination-centered">
   <%= will_paginate @assets %>
 </div>
-<%= link_to 'New Asset', new_asset_path, :class => 'btn btn-primary' %>
+

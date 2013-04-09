@@ -1,52 +1,26 @@
-<script type="text/javascript">
-  $(function() {
-    $('#aquired').datetimepicker({
-      pickTime:false
-    });
-  });
-
-  $(function() {
-    $('#refresh').datetimepicker({
-      pickTime:false
-    });
-  });
 </script>
-
-<%= simple_form_for(@asset, html: {  :autocomplete => :off, class: "form-vertical"}) do |f| %>
+<%= simple_form_for(@asset, html: {  :autocomplete => :off, class: "form-horizontal"}) do |f| %>
 <div class="row">
-  <div class="span4 offset2">
-    <%= f.input :assigned_to, placeholder: "Assigned To", label: false, :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_people.to_s] } %>
-    <%= f.input :asset, as: :string, placeholder: "Asset Number", label: false %>
-    <%= f.input :serial, as: :string, placeholder: "Serial Number",label: false %>
-    
-    <%= f.label :office_id %>
-    <%= f.collection_select(:office_id, Office.order(:office), :id, :office)  %>
-    <%= f.label "Model" %>
-    <%= f.collection_select(:device_id, Device.order(:model), :id, :model) %>
-    <%= f.input :machine_name, as: :string, placeholder: "Machine Name", label: false%>
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span6">
+        <%= f.input :assigned_to, placeholder: "Assigned To", :input_html => {  :'data-provide' => "typeahead", :'data-source' => [get_people.to_s] } %>
+        <%= f.input :asset, as: :string, placeholder: "Asset Number"%>
+        <%= f.input :serial, as: :string, placeholder: "Serial Number" %>
+        <%= f.association :office, :collection => Office.order(:office), :label_method => :office  %>
+        <%= f.association :device, :collection => Device.order(:model), :label_method => :model  %>
+        <%= f.input :machine_name, as: :string, placeholder: "Machine Name"%>
+      </div>
+      <div class="span6">
+        <%= f.input :client, as: :string, placeholder: "Client Name",  rel: 'tooltip', :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_clients.to_s] } %>
+        <%= f.input :po_num, as: :string, placeholder: "PO Number" %>
+        <%= f.input :comments, placeholder: "Comments", :input_html => { :rows => "3" } %>
+      <%= f.input :aquired, :as => :string, placeholder: "Aquired Date", input_html: {:'data-format' => "dd/MM/yyyy" }  %>     
+       <%= f.input :refresh, :as => :string, placeholder: "Refresh Date",  input_html: {  :'data-format' => "dd/MM/yyyy" }  %>   
+      <%= f.input :disposed, as: :boolean %>
+    </div>
   </div>
-  <div class="span4">
-    
-    <%= f.input :client, as: :string, placeholder: "Client Name", label: false, rel: 'tooltip', :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_clients.to_s] } %>
-    <%= f.input :po_num, as: :string, placeholder: "PO Number", label: false %>
-    <%= f.text_area :comments, :rows => "3" , placeholder: "Comments" %>
-  <div id="aquired" class="input-append date">
-    <%= f.text_field :aquired, placeholder: "Aquired Date", input_html: { :class => "input-small", :'data-format' => "dd/MM/yyyy" }  %>
-    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-    <br/>
-  </div>
-  <div id="refresh" class="input-append date input-small">
-   <%= f.text_field :refresh, placeholder: "Refresh Date", input_html: { :class => "input-small", :'data-format' => "dd/MM/yyyy" }  %>
-    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-  </div>
-<%= f.input :disposed, as: :boolean, :wrapper => :inline_checkbox %>
-  </div>
+</div>
 </div>
 <div class="form-actions">
     <%= f.submit :submit, class: "btn btn-primary" %>

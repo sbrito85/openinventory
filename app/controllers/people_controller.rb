@@ -80,4 +80,8 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def import
+      Person.import(params[:file])
+      redirect_to root_url, notice: "People imported"
+  end
 end

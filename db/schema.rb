@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405234829) do
+ActiveRecord::Schema.define(:version => 20130408211827) do
 
   create_table "assets", :force => true do |t|
     t.integer  "device_id"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(:version => 20130405234829) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "client"
+    t.integer  "person_id"
   end
+
+  add_index "assets", ["person_id"], :name => "index_assets_on_person_id"
 
   create_table "clients", :force => true do |t|
     t.string   "client"

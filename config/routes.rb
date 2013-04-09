@@ -1,8 +1,10 @@
 Openinventory::Application.routes.draw do
-  resources :people
+  resources :people do
+  	collection { post :import }
+  end
 
 
-  resources :assets
+  resources :assets 
 
 
   devise_for :users

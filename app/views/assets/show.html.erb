@@ -1,6 +1,12 @@
-<p id="notice"><%= notice %></p>
+
 <div class="row">
   <div class="span6 offset3">
+
+    <% if @asset.person_id == 0 %>
+      <div class="alert alert-error">
+       <Strong>Warning:</strong> <%= @asset.asset %> was not associated correctly with a user name. This will limit the ability to track this asset. Please edit the asset and place a proper name into the assigned to field.
+      </div>
+    <%end%>
      <% if @asset.disposed == true %>
       <div class="alert alert-error">
         <b><%= @asset.asset %></b> has been decommisioned
@@ -44,21 +50,32 @@
             <%= image_tag "user.png" %>
         </a>
         <div class="media-body">
-        
-        <h4 class="media-heading">Assigned To: <%= @asset.assigned_to %></h4>
-     
-        <b>Office:</b>
-        <%= @asset.office.office %>
+        <% if @asset.person_id != 0 %> 
+          <h4 class="media-heading">Assigned To: <%= link_to @asset.person.username, person_path(@asset.person.id) %></h4>
+          <b>Office:</b>
+          <%= @asset.person.office %></br>
+          <b>Title:</b>
+          <%= @asset.person.title %></br>
+          <b>Department:</b>
+          <%= @asset.person.department %></br>
+          
+          
+        <% else %>  
+          <h4 class="media-heading">Assigned To: <%= @asset.assigned_to %></h4>
+          <b>Office:</b>
+          <%= @asset.office.office %>
+          <% end %>
       </div>
-
+      
     </div>
   </div>
     <div class="well">
 
-        <b>Edited by:</b>
-        <%= @asset.user.username %></br>
+        
         <b>Last Updated:</b>
         <%= @asset.updated_at %></br>
+        <b>Created by:</b>
+        <%= @asset.user.username %></br>
          <b>Created:</b>
         <%= @asset.created_at %></br>
     </div>

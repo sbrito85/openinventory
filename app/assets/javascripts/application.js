@@ -12,6 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker
 //= require bootstrap
 //= require_tree .
+//= require_self
+
+$(function() {
+  $('#asset_refresh').datepicker()
+  
+	});
+$(function() {
+  $('#asset_aquired').datepicker()
+	});
+
+
