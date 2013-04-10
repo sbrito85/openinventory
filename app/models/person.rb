@@ -3,6 +3,8 @@ class Person < ActiveRecord::Base
 
    has_many :asset
 
+   audited
+   
    def self.import(file)
    		CSV.foreach(file.path,headers:true) do |row|
    			person = find_by_id(row["id"]) || new

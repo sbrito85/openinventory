@@ -6,6 +6,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'devise_ldap_authenticatable'
 gem 'will_paginate'
+gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", "~> 3.0"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,6 +24,7 @@ group :development do
   gem 'rb-fsevent', '~> 0.9'
 end
 group :assets do
+  gem "audited-activerecord", "~> 3.0"
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-datepicker-rails'

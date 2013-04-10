@@ -1,24 +1,74 @@
 
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
-<%= link_to 'New Asset', new_asset_path, :class => 'btn btn-primary' %>
+<script>
+  $(function () {
+    $('#assetlists a:first').tab('show');
+  })
+</script>
 <div class="pull-right">
   <%= link_to image_tag("excel.png"), assets_path(format: "xls") %>
+  <%= link_to 'New Asset', new_asset_path, :class => 'btn btn-primary' %>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= sortable "Asset", "Assets" %></th>
-      <th><%= sortable "assigned_to", "Assigned To" %></th>
+<ul class="nav nav-tabs" id="assetlists">
+  <li><a href="#assets" data-toggle="tab">Assets</a></li>
+  <li><a href="#refresh" data-toggle="tab">Refresh</a></li>
+  <li><a href="#retired" data-toggle="tab">Retired</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="assets">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= sortable "Asset", "Assets" %></th>
+          <th><%= sortable "assigned_to", "Assigned To" %></th>
 
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @assets %>
-  </tbody>
-</table>
-<div class="pagination-centered">
-  <%= will_paginate @assets %>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="assets">
+        <%= render @assets %>
+      </tbody>
+    </table>
+    <div class="pagination-centered">
+      <%= will_paginate @assets %>
+    </div>
+  </div>
+  <div class="tab-pane" id="refresh">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Assets</th>
+          <th>Assigned To</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="refresh">
+        <%= render @refresh %>
+      </tbody>
+    </table>
+    <div class="pagination-centered">
+      <%= will_paginate @refresh %>
+    </div>
+  </div>
+  <div class="tab-pane" id="retired">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Assets</th>
+          <th>Assigned To</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="approved">
+        <%= render @disposed %>
+      </tbody>
+    </table>
+    <div class="pagination-centered">
+      <%= will_paginate @assets %>
+    </div>
+  </div>
+  <div class="tab-pane active" id="finance">
+  </div>
 </div>
 

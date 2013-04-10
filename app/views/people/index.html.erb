@@ -1,5 +1,5 @@
-<h1>People</h1>
 
+<%= link_to 'New Person', new_person_path, :class => "btn btn-primary" %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,7 +16,7 @@
 
 <br />
 
-<%= link_to 'New Person', new_person_path, :class => "btn btn-primary" %>
+
 Import People
 <%= form_tag import_people_path, multipart: true do %>
   <%= file_field_tag :file %>

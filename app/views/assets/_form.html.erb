@@ -15,8 +15,8 @@
         <%= f.input :client, as: :string, placeholder: "Client Name",  rel: 'tooltip', :input_html => { :'data-provide' => "typeahead", :'data-source' => [get_clients.to_s] } %>
         <%= f.input :po_num, as: :string, placeholder: "PO Number" %>
         <%= f.input :comments, placeholder: "Comments", :input_html => { :rows => "3" } %>
-      <%= f.input :aquired, :as => :string, placeholder: "Aquired Date", input_html: {:'data-format' => "dd/MM/yyyy" }  %>     
-       <%= f.input :refresh, :as => :string, placeholder: "Refresh Date",  input_html: {  :'data-format' => "dd/MM/yyyy" }  %>   
+      <%= f.input :aquired, :as => :string, placeholder: "Aquired Date"  %>     
+       <%= f.input :refresh, :as => :string, placeholder: "Refresh Date" %>   
       <%= f.input :disposed, as: :boolean %>
     </div>
   </div>

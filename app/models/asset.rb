@@ -10,6 +10,8 @@ class Asset < ActiveRecord::Base
   validates :asset, :presence => true
   validates :device_id, :presence => true
 
+  audited
+  
   before_save { |asset|
     user_name = asset.assigned_to
 

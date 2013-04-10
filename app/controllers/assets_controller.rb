@@ -3,13 +3,15 @@ class AssetsController < ApplicationController
   # GET /assets.json
   helper_method :sort_column, :sort_direction
   def index
-    @assets = Asset.order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]).search(params[:search])
-
+    @assets = Asset.where("disposed = ? ", false).order(sort_column + " " + sort_direction).page(params[:page]).per_page(50).search(params[:search])
+    @disposed = Asset.where("disposed = ? ", true).page(params[:page]).per_page(50)
+    @refresh = Asset.where("disposed = ? AND refresh <= ?", false, Date.today + 100).page(params[:page]).per_page(50)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @assets }
       format.csv { render text: @assets.to_csv }
       format.xls #{ render text: @assets.to_csv(col_sep: "\t") }
+      #format.js
     end
   end
 

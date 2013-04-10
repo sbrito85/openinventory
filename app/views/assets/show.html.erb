@@ -1,8 +1,8 @@
 
-<div class="row">
-  <div class="span6 offset3">
+<div class="row-fluid">
+  <div class="span5 offset3">
 
-    <% if @asset.person_id == 0 %>
+    <% if @asset.person_id == 0 or @asset.person_id == nil %>
       <div class="alert alert-error">
        <Strong>Warning:</strong> <%= @asset.asset %> was not associated correctly with a user name. This will limit the ability to track this asset. Please edit the asset and place a proper name into the assigned to field.
       </div>
@@ -50,7 +50,7 @@
             <%= image_tag "user.png" %>
         </a>
         <div class="media-body">
-        <% if @asset.person_id != 0 %> 
+        <% if @asset.person_id != 0 and @asset.person_id != nil %> 
           <h4 class="media-heading">Assigned To: <%= link_to @asset.person.username, person_path(@asset.person.id) %></h4>
           <b>Office:</b>
           <%= @asset.person.office %></br>
@@ -69,17 +69,70 @@
       
     </div>
   </div>
-    <div class="well">
+  <% if @asset.audits.last != nil %>
+  <div class="accordian">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Last Audit
+      </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <div class="well">
+          <strong>Last Action:</strong>
+          <%= @asset.audits.last.action %></br>
+          <strong>Last edited by:</strong>
+          <%= @asset.audits.last.user.username %></br>
+          <b>Last Updated:</b>
+          <%= @asset.updated_at %></br>
+          <b>Created by:</b>
+          <%= @asset.user.username %></br>
+           <b>Created:</b>
+          <%= @asset.created_at %></br>
+           <strong>Lastest Updates:</strong>
+          <% @asset.audits.last.audited_changes.each do |a| %></br>  
+            <%= a %>
+          <%end%>
+          </div>
+        </div>
+      </div>
 
-        
-        <b>Last Updated:</b>
-        <%= @asset.updated_at %></br>
-        <b>Created by:</b>
-        <%= @asset.user.username %></br>
-         <b>Created:</b>
-        <%= @asset.created_at %></br>
     </div>
-    <%= link_to 'Edit', edit_asset_path(@asset) %> |
-      <%= link_to 'Back', assets_path %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        All Audits
+      </a>
+      </div>
+      <div id="collapseTwo" class="accordion-body collapse">
+        <div class="accordion-inner">
+          
+          <% @asset.audits.all.each do |a| %></br> 
+          <div class="well">
+            <strong>Action:</strong>
+            <%= a.action %></br>
+            <strong>Changed By:</strong>
+            <%= a.user.username %></br>
+            <b>Updated:</b>
+              <%= a.created_at %></br>
+            <% a.audited_changes.each do |c| %></br>
+              <%= c %>
+            <%end%>
+            </div>
+          <%end%>
+          
+        </div>
+      </div>
+      
+    </div>
   </div>
+  <% end %>
+  <%= link_to 'Edit', edit_asset_path(@asset) %> |
+  <%= link_to 'Back', assets_path %>
+  
+ 
+
+  
+</div>
 </div>
