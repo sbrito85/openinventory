@@ -16,7 +16,8 @@
 						<h4 class="media-heading"> <%= @person.username%></h4>
 						<b>Title:</b> <%= @person.title %></br>
 					  <b>Department:</b> <%= @person.department %></br>
-					  <b>Office:</b> <%= @person.office %></br>
+					  <b>Office:</b> <%= @person.office.office %></br>
+					  <b>Number:</b> <%= @person.telephone %></br>
 			 	</div>
  			 </div>
  			 
@@ -35,7 +36,7 @@
 				</a>
 				<div class="media-body">
 					<div class="media">
-						<h4 class="media-heading"> <%= asset.device.make%><%= asset.device.model%> - <%= link_to asset.asset, asset_path(asset.id) %></h4>
+						<h4 class="media-heading"> <%= asset.device.make%> <%= asset.device.model%> - <%= link_to asset.asset, asset_path(asset.id) %></h4>
 						<b>Serial:</b> <%= asset.serial %></br>
 					  <b>Name:</b> <%= asset.machine_name %></br>
 					  <b>Refresh:</b> <%= asset.refresh %></br>

@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.order(:username).page(params[:page]).per_page(50)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,7 +81,9 @@ class PeopleController < ApplicationController
     end
   end
   def import
-      Person.import(params[:file])
-      redirect_to root_url, notice: "People imported"
+      Person.import
+      redirect_to people_url, notice: "People imported"
   end
+
+  
 end

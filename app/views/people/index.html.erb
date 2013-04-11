@@ -16,9 +16,9 @@
 
 <br />
 
-
+<%= will_paginate @people %>
 Import People
-<%= form_tag import_people_path, multipart: true do %>
-  <%= file_field_tag :file %>
+<%= form_tag import_people_path do %>
   <%= submit_tag "Import" %>
 <% end %>
+

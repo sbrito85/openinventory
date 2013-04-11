@@ -5,7 +5,7 @@
   	<%= f.input :username %>
   	<%= f.input :department %>
   	<%= f.input :title %>
-  	<%= f.input :office %>
+  	<%= f.association :office, :collection => Office.order(:office), :label_method => :office  %>
   </div>
 
   <div class="form-actions">
