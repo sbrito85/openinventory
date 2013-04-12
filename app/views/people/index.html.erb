@@ -1,11 +1,17 @@
 
-<%= link_to 'New Person', new_person_path, :class => "btn btn-primary" %>
+<%= form_tag import_people_path do %>
+<%= link_to 'New Person', new_person_path, :class => "btn btn-primary hidden-phone" %>
+  <%= submit_tag "Import People", :class => "btn btn-warning pull-right hidden-phone" %>
+<% end %>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Title</th>
-      <th>Actions</th>
+
     </tr>
   </thead>
   <tbody>
@@ -15,10 +21,8 @@
 </table>
 
 <br />
+<div class="pagination-centered">
+  <%= will_paginate @people %>
+</div>
 
-<%= will_paginate @people %>
-Import People
-<%= form_tag import_people_path do %>
-  <%= submit_tag "Import" %>
-<% end %>
 

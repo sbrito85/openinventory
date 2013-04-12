@@ -4,11 +4,12 @@
 		<div class="well">
 			<div class="media">
 				<a class="pull-left" href="#">
-						<% if Rails.application.assets.find_asset @person.username + '.jpg' %>
-							<%= image_tag @person.username + '.jpg', :class => "media-object" %>
-						<%else %>
-							<%= image_tag "user.png", :class => "media-object" %>
-						<% end %>
+						<% if @person.image_file_name.nil? %>
+         
+            <%= image_tag "user.png", :class => "media-object" %>
+           <% else %>
+            <%= image_tag @person.image(:small) %>
+          <%end%>
 
 				</a>
 				<div class="media-body">

@@ -45,12 +45,17 @@
 
     <div class="well">
       <div class="media">
-        <a class="pull-left" href="#">
-
-            <%= image_tag "user.png" %>
+        <% if @asset.person_id != 0 and @asset.person_id != nil %> 
+         <a class="pull-left" href="#">
+        <% if @asset.person.image_file_name.nil? %>
+         
+            <%= image_tag "user.png", :class => "media-object" %>
+           <% else %>
+            <%= image_tag @asset.person.image(:small) %>
+          <%end%>
         </a>
         <div class="media-body">
-        <% if @asset.person_id != 0 and @asset.person_id != nil %> 
+        
           <h4 class="media-heading">Assigned To: <%= link_to @asset.person.username, person_path(@asset.person.id) %></h4>
           <b>Office:</b>
           <%= @asset.person.office.office %></br>
@@ -58,17 +63,22 @@
           <%= @asset.person.title %></br>
           <b>Department:</b>
           <%= @asset.person.department %></br>
-          
-          
+        </div>
         <% else %>  
+          <a class="pull-left" href="#">
+            <%= image_tag "user.png" %>
+        </a>
+         <div class="media-body"> 
+        
           <h4 class="media-heading">Assigned To: <%= @asset.assigned_to %></h4>
           <b>Office:</b>
           <%= @asset.office.office %>
+        </div>
           <% end %>
       </div>
       
     </div>
-  </div>
+
   <% if @asset.audits.last != nil %>
   <div class="accordian">
     <div class="accordion-group">

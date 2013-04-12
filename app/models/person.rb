@@ -1,17 +1,22 @@
 class Person < ActiveRecord::Base
-   attr_accessible :username, :department, :title, :office_id, :accountname, :telephone
+   attr_accessible :username, :department, :title, :office_id, :accountname, :telephone,:image
    belongs_to :office
    has_many :asset
 
    audited
-   
-
+   validates_attachment :image,
+                            content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] },
+                            size: { less_than: 5.megabytes }
+   has_attached_file :image, styles: { small: "96x96>"}
+   def picture_from_url(url)
+    self.image = open(url)
+  end
    def self.import
   # initialization stuff. set bind_dn, bind_pass, ldap_host, base_dn and filter
 
-  ldap = Net::LDAP.new(:host => "FQDNofserver", :port => 389)
-  ldap.auth "admin", "password"
-  ldap.base = "DC=NA,DC=domain,DC=dom"
+  ldap = Net::LDAP.new(:host => "FQDN of Server", :port => 389)
+  ldap.auth "AdminUser", "Adminpass"
+  ldap.base = "cn=user,dc=my,dc=com"
   if ldap.bind
   else
     p ldap.get_operation_result
@@ -19,26 +24,46 @@ class Person < ActiveRecord::Base
 
   begin
   # Build the list
-  filter1 = Net::LDAP::Filter.present("physicalDeliveryOfficeName")
-  filter2 = Net::LDAP::Filter.present("title")
+  #filter1 = Net::LDAP::Filter.present("thumbnailphoto")
+  filter1 = Net::LDAP::Filter.present("title")
+  filter2 = Net::LDAP::Filter.present("physicalDeliveryOfficeName")
   filter3 = Net::LDAP::Filter.present("department")
-  filter4 = Net::LDAP::Filter.present("telephonenumber")
+  #filter4 = Net::LDAP::Filter.present("telephonenumber")
   join_filter = Net::LDAP::Filter.join(filter1,filter2)
   join_filter = Net::LDAP::Filter.join(join_filter,filter3)
-  join_filter = Net::LDAP::Filter.join(join_filter,filter4)
-  attrs = ["Name", "title", "department", "physicalDeliveryOfficeName", "telephoneNumber", "samAccountName"]
+  #join_filter = Net::LDAP::Filter.join(join_filter,filter4)
+  attrs = ["Name", "title", "department", "physicalDeliveryOfficeName", "telephoneNumber", "samAccountName", "thumbnailphoto"]
   records = new_records = 0
-  ldap.search(:base => "DC=na,DC=domain,DC=dom", :filter => join_filter, :attrs => attrs) do |entry|
+  ldap.search(:base => "cn=user,dc=my,dc=com", :filter => join_filter, :attrs => attrs) do |entry|
     username = entry.Name.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
     title = entry.title.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
     department = entry.department.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
     office = entry.physicalDeliveryOfficeName.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
-    telephone = entry.telephonenumber.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
+    begin
+      telephone = entry.telephonenumber.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
+    rescue
+      telephone = ""
+    end
     account = entry.samAccountName.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
+    blob = ""
+    begin
+      entry.thumbnailphoto.each do |t| 
+        blob = t
+        
+        
+      end
+      image = Magick::Image.from_blob(blob)
+        image[0].write("public/users/" + account + '.jpg')
+      picture = "public/users/" + account + ".jpg"
+    rescue
+      picture = "public/default/user.png"
+    end
+    
     Office.all.each do |o|
      if o.office == office
         user = Person.find_or_initialize_by_username :username => username, :title => title, :department => department,:office_id => o.id, :telephone => telephone, :accountname => account
         if user.new_record?
+          user.picture_from_url picture
           user.save
           puts entry.physicalDeliveryOfficeName.to_s.strip
           new_records = new_records + 1
@@ -47,6 +72,8 @@ class Person < ActiveRecord::Base
           user.department = department
           user.office_id = o.id
           user.telephone = telephone
+          user.accountname = account
+          user.picture_from_url picture
           user.save
         end
         records = records + 1

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411002503) do
+ActiveRecord::Schema.define(:version => 20130411210532) do
 
   create_table "assets", :force => true do |t|
     t.integer  "device_id"
@@ -87,14 +87,18 @@ ActiveRecord::Schema.define(:version => 20130411002503) do
   end
 
   create_table "people", :force => true do |t|
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "username"
     t.string   "department"
     t.string   "title"
     t.integer  "office_id"
     t.string   "telephone"
     t.string   "accountname"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "people", ["office_id"], :name => "index_people_on_office_id"

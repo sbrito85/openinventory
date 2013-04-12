@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
       format.json { render json: @people }
     end
   end
-
+  
   # GET /people/1
   # GET /people/1.json
   def show

@@ -2,5 +2,5 @@
 	<td><%= link_to asset.asset, asset_path(asset) %></td>
 	<td><%= asset.assigned_to %></td>
 	<td> 
-	<%= link_to 'Edit', edit_asset_path(asset), :class => 'btn btn-mini btn-info'  %>|<%= link_to 'Delete', asset_path(asset), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %></td>
+	<%= link_to 'Edit', edit_asset_path(asset), :class => 'btn btn-mini btn-info'  %><%= link_to 'Delete', asset_path(asset), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger hidden-phone' %></td>
 </tr>

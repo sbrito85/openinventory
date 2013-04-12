@@ -8,6 +8,7 @@ gem 'devise_ldap_authenticatable'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", "~> 3.0"
+gem 'rmagick', '2.13.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
