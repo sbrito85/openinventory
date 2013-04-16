@@ -3,9 +3,11 @@
          
             <%= image_tag "user.png", :class => "media-object" %>
            <% else %>
-            <%= image_tag person.image(:small) %>
+            <%= link_to image_tag(person.image(:small)), "#userModal#{person.id}", :data => {:toggle=>"modal"},
+:class=>"btn" %>
           <%end%>
 	</td>
-	<td><%= link_to person.username, person_path(person) %></td>
+	<td><%= person.username %></td>
 	<td><%= person.title %></td>
   </tr>
+ <%= render 'show', :person => person %>

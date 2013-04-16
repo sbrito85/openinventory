@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
    validates_attachment :image,
                             content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'] },
                             size: { less_than: 5.megabytes }
-   has_attached_file :image, styles: { small: "96x96>"}
+   has_attached_file :image, styles: { small: "96x96!"}
    def picture_from_url(url)
     self.image = open(url)
   end
@@ -49,8 +49,6 @@ class Person < ActiveRecord::Base
     begin
       entry.thumbnailphoto.each do |t| 
         blob = t
-        
-        
       end
       image = Magick::Image.from_blob(blob)
         image[0].write("public/users/" + account + '.jpg')

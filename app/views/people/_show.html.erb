@@ -1,0 +1,56 @@
+<div id="userModal<%= person.id %>" class="modal hide fade">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><%= person.username%></h3>
+  </div>
+			<div class="well">
+				<div class="media">
+					<a class="pull-left" href="#">
+							<% if person.image_file_name.nil? %>
+	         
+	            <%= image_tag "user.png", :class => "media-object" %>
+	           <% else %>
+	            <%= image_tag person.image(:small) %>
+	          <%end%>
+
+					</a>
+					<div class="media-body">
+						<div class="media">
+							
+							<b>Title:</b> <%= person.title %></br>
+						  <b>Department:</b> <%= person.department %></br>
+						  <b>Office:</b> <%= person.office.office %></br>
+						  <b>Number:</b> <%= person.telephone %></br>
+				 	</div>
+	 			 </div>
+	 			 
+				 </div>
+			</div>
+
+			<% person.asset.each do |asset| %>
+				<div class="well">
+				<div class="media">
+					<a class="pull-left" href="#">
+						<% if asset.device.image_file_name.nil? %>
+							<%= image_tag "monitor.png", :class => "media-object" %>
+						<% else %>
+							<%= image_tag asset.device.image(:small) %>
+						<%end%>
+					</a>
+					<div class="media-body">
+						<div class="media">
+							<h4 class="media-heading"> <%= asset.device.make%> <%= asset.device.model%> - <%= link_to asset.asset, asset_path(asset.id) %></h4>
+							<b>Serial:</b> <%= asset.serial %></br>
+						  <b>Name:</b> <%= asset.machine_name %></br>
+						  <b>Refresh:</b> <%= asset.refresh %></br>
+				 	</div>
+	 			 </div>
+	 			 
+				 </div>
+			</div>
+			<% end %>
+			<div class="modal-footer">
+				<%= link_to 'Edit', edit_person_path(person), :class => "btn btn-primary" %>
+			</div>
+			
+</div>

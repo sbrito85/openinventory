@@ -7,5 +7,8 @@ body{
 
 @import 'bootstrap-responsive';
 
-
+.modal {
+    overflow-y:auto;
+    max-height:70%;
+}
 
