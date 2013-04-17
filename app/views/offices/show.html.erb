@@ -1,12 +1,11 @@
 <div class="row">
 	<div class="span6 offset3">
 		<div class="well">
-			  <b>Office Name:</b> <%= @office.office %>
-			</p>
-
-
-			<%= link_to 'Edit', edit_office_path(@office) %> |
-			<%= link_to 'Back', offices_path %>
+			  <b>Office Name:</b> <%= @office.office %></br>
+			  <b>Site Code:</b> <%= @office.sitecode %></br>
+			  <b>Domain Name:</b> <%= @office.domain.name %>
 		</div>
+		<%= link_to 'Edit', edit_office_path(@office) %> |
+			<%= link_to 'Back', offices_path %>
 	</div>
 </div>

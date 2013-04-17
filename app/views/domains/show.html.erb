@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="span6 offset3">
+    <div class="well">
+      <b>Name:</b><%= @domain.name %></br>
+      <b>Dc:</b><%= @domain.dc %></br>
+      <b>Dn:</b><%= @domain.dn %></br>
+      <b>Adminuser:</b><%= @domain.adminUser %>
+    </div>
+    <%= link_to 'Edit', edit_domain_path(@domain) %> |
+    <%= link_to 'Back', domains_path %>
+  </div>
+</div>
+

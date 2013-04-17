@@ -1,13 +1,17 @@
-<tr>
-	<td><% if person.image_file_name.nil? %>
-         
+<div class="figure">
+
+<% if person.image_file_name.nil? %>
+         <figure>
             <%= image_tag "user.png", :class => "media-object" %>
            <% else %>
-            <%= link_to image_tag(person.image(:small)), "#userModal#{person.id}", :data => {:toggle=>"modal"},
-:class=>"btn" %>
+            <%= link_to image_tag(person.image(:small)), "#userModal#{person.id}", :data => {:toggle=>"modal"} %>
           <%end%>
-	</td>
-	<td><%= person.username %></td>
-	<td><%= person.title %></td>
-  </tr>
+        
+          <figcaption>
+          
+          		<%= person.username %>
+          	
+          </figcaption>
+         </figure>
+</div>
  <%= render 'show', :person => person %>

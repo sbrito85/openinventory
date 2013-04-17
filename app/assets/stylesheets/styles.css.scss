@@ -11,4 +11,33 @@ body{
     overflow-y:auto;
     max-height:70%;
 }
+div.figure {
+  float: left;
+  
+  border: thin silver solid;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+div.figure p {
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+}
+img.scaled {
+  width: 100%;
+}
 
+figcaption {
+	font-size: 10px;
+	text-align: center;
+   opacity: 2;
+  -webkit-transition: opacity 0.3s ease-out;  
+     -moz-transition: opacity 0.3s ease-out;  
+      -ms-transition: opacity 0.3s ease-out;  
+       -o-transition: opacity 0.3s ease-out;  
+          transition: opacity 0.3s ease-out;  
+}
+figure:hover figcaption {
+   opacity: 1; 
+}

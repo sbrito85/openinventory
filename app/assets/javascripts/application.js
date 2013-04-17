@@ -19,10 +19,11 @@
 
 $(function() {
   $('#asset_refresh').datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
-  
+  	
 	});
 $(function() {
   $('#asset_aquired').datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
+
 	});
 
 

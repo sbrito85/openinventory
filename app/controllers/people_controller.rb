@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.order(:username).page(params[:page]).per_page(100)
+    @people = Person.where('office_id = ?' , params[:id]).order(:username).page(params[:page]).per_page(99)
 
     respond_to do |format|
       format.html # index.html.erb

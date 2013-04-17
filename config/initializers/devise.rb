@@ -12,8 +12,8 @@ Devise.setup do |config|
   # config.ldap_ad_group_check = false
   
   #Uncomment to enable Active Directory Auth "domain\username"
-  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "NA\\#{login}" }
-
+  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{login}" }
+  
   
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

@@ -10,20 +10,33 @@
 		<% if user_signed_in? %>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
-					<li><%= link_to "Assets", root_path %></li>
-					<li><%= link_to "People", people_path %></li>
+
+					<li><%= link_to raw('<i class="icon-tasks icon-black"></i> Assets'), root_path %></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
+						<i class="icon-user icon-black"></i>
+						People
+
+      				<b class="caret"></b>
+      				</a>
+      				<ul class="dropdown-menu">
+      					<% Office.all.each do |o| %>
+						<li><%= link_to o.office, people_path(:id => o.id) %></li>
+						<% end %>
+					</ul></li>
 					
 			</ul>
 			<ul class="nav pull-right">
 <li class="dropdown">
-					<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
+			<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 						Setup
       			<b class="caret"></b>
     				</a>
     				<ul class="dropdown-menu">
-							<li><%= link_to "Clients", clients_path %></li>
-      				<li><%= link_to "Devices", devices_path %></li>
-      				<li><%= link_to "Offices", offices_path %></li>
+							<li><%= link_to raw('<i class="icon-star icon-black"></i> Clients'), clients_path %></li>
+      				<li><%= link_to raw('<i class="icon-list-alt icon-black"></i> Devices'), devices_path %></li>
+      				<li><%= link_to raw('<i class="icon-globe icon-black"></i> Domains'), domains_path %></li>
+      				<li><%= link_to raw('<i class="icon-home icon-black"></i> Offices'), offices_path %></li>
       				<li class="nav-header"><%= current_user.username %></li>
       				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       			</ul>

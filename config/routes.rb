@@ -1,4 +1,7 @@
 Openinventory::Application.routes.draw do
+  resources :domains
+
+
   resources :people do
   	collection { post :import }
   end

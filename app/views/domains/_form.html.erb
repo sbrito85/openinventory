@@ -1,0 +1,14 @@
+<%= simple_form_for(@domain, html: {class: 'form-horizontal' }) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :name, placeholder: "my.com" %>
+    <%= f.input :dc, placeholder: "server.my.com"%>
+    <%= f.input :dn, placeholder: "dc=my,dc=com"%>
+    <%= f.input :adminUser, placeholder: "domain\\username" %>
+    <%= f.input :adminPass, :as => :password, label: "Password" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+<% end %>
