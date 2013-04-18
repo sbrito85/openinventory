@@ -6,15 +6,26 @@
     $('#assetlists a:first').tab('show');
   })
 </script>
-<div class="pull-right">
+<div>
+
+    <div class="pull-right">
+    
+
   <%= link_to image_tag("excel.png"), assets_path(format: "xls"), :class => "hidden-phone" %>
   <%= link_to raw('<i class="icon-plus icon-white"></i>'), new_asset_path, :class => 'btn btn-primary hidden-phone' %>
+  
 </div>
+<%= form_tag assets_path, :class => "form-search navbar-search pull-right", :method => 'get' do %>
+    
+
+        <%= text_field_tag :search, params[:search], :class => 'span2', placeholder: "Search" %>
+   <% end %>
 <ul class="nav nav-tabs" id="assetlists">
   <li><a href="#assets" data-toggle="tab">Assets</a></li>
   <li><a href="#refresh" data-toggle="tab">Refresh</a></li>
   <li><a href="#retired" data-toggle="tab">Retired</a></li>
 </ul>
+</div>
 <div class="tab-content">
   <div class="tab-pane active" id="assets">
     <table class="table table-striped">

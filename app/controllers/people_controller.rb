@@ -2,11 +2,16 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.where('office_id = ?' , params[:id]).order(:username).page(params[:page]).per_page(99)
+    if params[:id] != nil
+      session[:id]= params[:id]
+    end
+    puts session[:id]
+    @people = Person.order(:username).page(params[:page]).per_page(99).search(params[:search]).where('office_id = ?', session[:id])
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @people }
+      format.js # index.js.erb 
     end
   end
   

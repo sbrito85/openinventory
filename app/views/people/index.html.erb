@@ -1,18 +1,21 @@
 
+<div class="clearfix">
+<%= form_tag people_path, :autocomplete => :off,:class => "form-search pull-left", :method => 'get', :id => 'people_search' do %>
+
+				<%= text_field_tag :search, params[:search], :class => 'span8', placeholder: "Search" %>   
+<% end %>
+		
 <%= form_tag import_people_path do %>
 <%= link_to raw('<i class="icon-plus icon-white"></i>'), new_person_path, :class => "btn btn-primary pull-right hidden-phone" %>
   <%= button_tag(type: "submit", class: "btn btn-warning pull-right") do %>
     <i class="icon-arrow-up icon-white"></i>
   <%end%>
-    <input type="text" class="search-query" placeholder="Search">
 <% end %>
-
-
-
-    <%= render @people %>
-
-<div class="pagination-centered">
-  <%= will_paginate @people %>
 </div>
+
+<div id="people" class="clearfix">
+    <%= render 'person' %>
+</div>
+
 
 

@@ -11,6 +11,14 @@ class Person < ActiveRecord::Base
    def picture_from_url(url)
     self.image = open(url)
   end
+
+  def self.search(search)
+    if search
+      where('(username LIKE ?) OR (department LIKE ?)', "%#{search}%" , "%#{search}%")
+    else
+      scoped
+    end
+  end
    def self.import
   # initialization stuff. set bind_dn, bind_pass, ldap_host, base_dn and filter
   Domain.all.each do |domain|

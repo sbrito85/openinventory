@@ -1,3 +1,4 @@
+  <% for person in @people %>
 <div class="figure">
 
 <% if person.image_file_name.nil? %>
@@ -15,3 +16,7 @@
          </figure>
 </div>
  <%= render 'show', :person => person %>
+ <% end %>
+ <div class="pagination-centered">
+  <%= will_paginate @people %>
+</div>
