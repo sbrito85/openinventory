@@ -1,4 +1,4 @@
-<%= link_to raw('<i class="icon-plus icon-white"></i>'), new_domain_path, class: "btn btn-primary pull-right" %>
+<%= link_to raw('<i class="icon-plus icon-white"></i>'), "#newDomainModal", :data => {:toggle=>"modal"} , class: "btn btn-primary pull-right" %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -12,6 +12,6 @@
     <%= render @domains %>
   <tbody>
 </table>
-
+<%= render 'new' %>
 <br />
 

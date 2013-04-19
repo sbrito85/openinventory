@@ -1,6 +1,41 @@
-<tr>
-	<td><%= link_to asset.asset, asset_path(asset) %></td>
-	<td><%= asset.assigned_to %></td>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= sortable "Asset", "Assets" %></th>
+        <% if session[:f] == 'active' %>
+          <th><%= sortable "assigned_to", "Assigned To" %></th>
+        <% elsif session[:f] == 'refresh' %>
+         <th><%= sortable "refresh", "Refresh Date" %></th>
+        <% elsif session[:f] == 'retired' %>
+          <th><%= sortable "comments", "Comments" %></th>
+        <% else %>
+          <th><%= sortable "assigned_to", "Assigned To" %></th>
+          <th class="hidden-phone"><%= sortable "PO_num", "PO Number" %></th>
+        <% end %>
+        
 
-	<td><%= link_to 'Edit', edit_asset_path(asset), :class => 'btn btn-mini btn-info'  %><%= link_to 'Delete', asset_path(asset), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger hidden-phone' %></td>
-</tr>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+		<% for asset in @assets %>
+		<tr>
+			<td><%= link_to asset.asset, asset_path(asset) %></td>
+			<% if session[:f] == 'active' %>
+			<td><%= asset.assigned_to %></td>
+			<% elsif session[:f] == 'refresh' %>
+				<td><%= asset.refresh %></td>
+			<% elsif session[:f] == 'disposed' %>
+				<td><%= asset.comments %></td>
+      <% else %>
+        <td><%= asset.assigned_to %></td>
+        <td class="hidden-phone"><%= asset.po_num %></td>
+			<% end %>
+
+
+
+			<td><%= link_to 'Edit', edit_asset_path(asset), :class => 'btn btn-mini btn-info'  %><%= link_to 'Delete', asset_path(asset), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger hidden-phone' %></td>
+		</tr>
+		<%end%>
+    </tbody>
+  </table>

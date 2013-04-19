@@ -6,7 +6,7 @@
 <% end %>
 		
 <%= form_tag import_people_path do %>
-<%= link_to raw('<i class="icon-plus icon-white"></i>'), new_person_path, :class => "btn btn-primary pull-right hidden-phone" %>
+<%= link_to raw('<i class="icon-plus icon-white"></i>'),  "#newPersonModal", :data => {:toggle=>"modal"} , :class => "btn btn-primary pull-right hidden-phone" %>
   <%= button_tag(type: "submit", class: "btn btn-warning pull-right") do %>
     <i class="icon-arrow-up icon-white"></i>
   <%end%>
@@ -16,6 +16,7 @@
 <div id="people" class="clearfix">
     <%= render 'person' %>
 </div>
+<%= render 'new' %>
 
 
 

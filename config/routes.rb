@@ -23,5 +23,5 @@ Openinventory::Application.routes.draw do
 
   get "pages/home"
 
-  root :to => 'assets#index'
+  root :to => 'pages#home'
 end

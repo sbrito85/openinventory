@@ -1,9 +1,2 @@
-$boxes = $('<%= j render(@assets) %>')
-
-$('#assets').append( $boxes ).imagesLoaded( function(){
-});
-<% if @asset.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate(@assets) %>');
-<% else %>
-  $('.pagination').remove();
-<% end %>
+$("#assets").hide();
+$("#assets").html("<%= escape_javascript(render("asset")) %>").fadeIn(500);

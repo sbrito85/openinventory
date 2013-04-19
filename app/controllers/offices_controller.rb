@@ -3,7 +3,7 @@ class OfficesController < ApplicationController
   # GET /offices.json
   def index
     @offices = Office.all
-
+    @office = Office.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @offices }

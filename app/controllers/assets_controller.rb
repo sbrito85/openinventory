@@ -3,15 +3,27 @@ class AssetsController < ApplicationController
   # GET /assets.json
   helper_method :sort_column, :sort_direction
   def index
-    @assets = Asset.where("disposed = ? ", false).order(sort_column + " " + sort_direction).page(params[:page]).per_page(50).search(params[:search])
-    @disposed = Asset.where("disposed = ? ", true).page(params[:page]).per_page(50)
-    @refresh = Asset.where("disposed = ? AND refresh <= ?", false, Date.today + 100).page(params[:page]).per_page(50)
+    if params[:id] != nil
+      session[:id]= params[:id]
+    end
+    if params[:f] != nil
+      session[:f]= params[:f]
+    end
+    if session[:f] == 'active'
+      @assets = Asset.where("disposed = ? AND office_id = ?", false, session[:id]).order(sort_column + " " + sort_direction).page(params[:page]).per_page(50).search(params[:search])
+    elsif session[:f]== 'retired'
+      @assets= Asset.where("disposed = ? AND office_id = ?", true, session[:id]).page(params[:page]).per_page(50).search(params[:search]) #disposed assets
+    elsif session[:f]== 'refresh'
+      @assets = Asset.where("disposed = ? AND refresh <= ? AND office_id = ?", false, Date.today + 100, session[:id]).page(params[:page]).per_page(50).search(params[:search])#refresh
+    else
+      @assets = Asset.where("office_id = ?",  session[:id]).page(params[:page]).per_page(50).search(params[:search]) #refresh
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @assets }
       format.csv { render text: @assets.to_csv }
       format.xls #{ render text: @assets.to_csv(col_sep: "\t") }
-      #format.js
+      format.js
     end
   end
 

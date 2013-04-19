@@ -1,38 +1,56 @@
-<div id="container">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Asset</th>
-      <th>Serial</th>
-      <th>Assigned To</th>
+<% if Office.all.count == 0 or Domain.all.count == 0 or Device.count == 0 %>
+  <div class="hero-unit">
+    <h1>Welcome to Open Inventory!</h1>
+  </br>
+    <p>Before we start, we need to set up a few things. We must add at lease 1 domain, 1 office and 1 device classification before we can add any assets! You can add an office by clicking the buttons below, or going to the setup tab in the navigation.</p>
+    <%= link_to "Add Domain", "#newDomainModal", :data => {:toggle=>"modal"}, :class => "btn btn-primary" %> | <%= link_to "Add Office", "#newOfficeModal", :data => {:toggle=>"modal"}, :class => "btn btn-primary" %> | <%= link_to "Add Device", "#newDeviceModal", :data => {:toggle=>"modal"}, :class => "btn btn-primary" %>
+      </div>
+      <%= render 'devices/new' %>
+      <%= render 'offices/new' %>
+      <%= render 'domains/new' %>
+<% else %>
+<div class="container">
+  <div class="well alert-success">
+    <div class="row-fluid">
+    <div class="span3">
+      <strong>Total Domains:</strong> <%= link_to Domain.all.count, domains_path %></br>
+    </div>
+    <div class="span3">
+      <strong>Total Offices:</strong> <%= link_to Office.all.count, offices_path %></br>
+    </div>
+    <div class="span3">
+      <strong>Device Classifications:</strong> <%= link_to Device.all.count, devices_path %>
+    </div>
+    <div class="span3">
+      <strong>Clients:</strong> <%= link_to Client.all.count, clients_path %>
+    </div>
 
-    </tr>
-  </thead>
-  <tbody>
-  	<tr>
-  		<td>SF0294</td>
-  		<td>394ubv948nv</td>
-  		<td>Other guy</td>
-
-  	<tr>
-  	<tr>
-  		<td>SF0294</td>
-  		<td>394ubv948nv</td>
-  		<td>Steve Brito</td>
-
-  	<tr>
-  	<tr>
-  		<td>SF0294</td>
-  		<td>394ubv948nv</td>
-  		<td>Steve Brito</td>
-
-  	<tr>
-  	<tr>
-  		<td>SF0294</td>
-  		<td>394ubv948nv</td>
-  		<td>Steve Brito</td>
-
-  	<tr>
-</tbody>
-</table>
+  </div>
+  </div>
+  <div class="row-fluid">
+    <% Office.order(:office).all.each do |o| %>
+      <div class="span4">
+        <div class="well">
+          <div class="progress">
+            <% if o.asset.count != 0%>
+              <div class="bar bar-success" style="width: <%=  100 - (o.asset.where('refresh <= ?', Date.today + 100).count.to_f / o.asset.count.to_f * 100) %>%;"></div>
+    
+              <div class="bar bar-danger" style="width: <%=  o.asset.where('refresh <= ?', Date.today + 100).count.to_f / o.asset.count.to_f * 100 %>%;"></div>
+            <% end %>
+            </div>
+          <% if o.domain != nil %>
+            <h4><%= link_to o.office, office_path(o) %> - <%= o.domain.name %></h4>
+          <% else %>
+            <h4><%= link_to o.office, edit_office_path(o) %></h4>
+          <% end %>
+          Head Count: <%= link_to o.person.count, people_path(:id => o.id) %></br>
+          Active Assets: <%= link_to o.asset.count, assets_path(:id => o.id, :f => 'active') %></br>
+          Assets Refresh: <%= link_to o.asset.where('refresh <= ?', Date.today + 100).count, assets_path(:id => o.id, :f => 'refresh') %>
+          
+       
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+<% end %>

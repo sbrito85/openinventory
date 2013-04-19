@@ -35,4 +35,13 @@ $.get($("#people_search").attr("action"), $("#people_search").serialize(), null,
 return false;
   });
 });
-
+$(function() {
+  $(document).on("click","#assets th a, #assets .pagination a", function() {
+$.getScript(this.href);
+return false;
+});
+$("#assets_search input").keyup(function() {
+$.get($("#assets_search").attr("action"), $("#assets_search").serialize(), null, "script");
+return false;
+  });
+});

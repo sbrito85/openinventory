@@ -1,4 +1,4 @@
-<%= link_to raw('<i class="icon-plus icon-white"></i>'), new_client_path, :class => "btn btn-primary pull-right" %>
+<%= link_to raw('<i class="icon-plus icon-white"></i>'), "#newClientModal", :data => {:toggle=>"modal"} , :class => "btn btn-primary pull-right" %>
 
 <table class="table table-striped">
   <thead>
@@ -12,7 +12,7 @@
     <%= render @clients %>
   </tbody>
 </table>
-
+<%= render 'new' %>
 <br />
 
 

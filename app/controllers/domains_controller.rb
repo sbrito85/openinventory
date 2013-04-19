@@ -3,7 +3,7 @@ class DomainsController < ApplicationController
   # GET /domains.json
   def index
     @domains = Domain.all
-
+    @domain = Domain.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @domains }

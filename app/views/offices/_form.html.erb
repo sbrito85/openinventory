@@ -4,7 +4,7 @@
   <%= f.input :office %>
   <%= f.input :sitecode %>
   <%= f.association :domain, :collection => Domain.order(:name), :label_method => :name  %>
-  <%= f.input :ou %>
+  <%= f.input :ou, placeholder: "OU=Employees, OU=Office" %>
 
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>

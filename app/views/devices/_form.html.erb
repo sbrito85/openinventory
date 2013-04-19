@@ -1,10 +1,10 @@
 <%= simple_form_for(@device, html: {class: "form-horizontal"}) do |f| %>
   <% f.error_notification %>
     
-    <%= f.input :image, label: "Upload an image" %>
-    <%= f.input :make, as: :text, input_html: { rows: "1" } %>
-    <%= f.input :model, as: :text, input_html: { rows: "1" } %>
-    <%= f.input :assettype, as: :text, input_html: { rows: "1" } %>
+    <%= f.input :image, label: "Upload Device Image" %>
+    <%= f.input :make, as: :string, placeholder: "Dell,Apple,HP etc...." %>
+    <%= f.input :model, as: :string, placeholder: "iMac 13,2, Latitude E6420 etc..." %>
+    <%= f.input :assettype, as: :string, label: "Asset Type", placeholder: "Latpop, Desktop, Phone etc.." %>
 
 
   <div class="form-actions">

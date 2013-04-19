@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   # GET /devices.json
   def index
     @devices = Device.all
-
+    @device = Device.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @devices }

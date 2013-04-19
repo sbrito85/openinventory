@@ -6,26 +6,40 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-		<a class="brand" href="#">OpenInventory</a>
+		<a class="brand" href="/pages/home">OpenInventory</a>
 		<% if user_signed_in? %>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
+						<i class="icon-tasks icon-black"></i>
+						Assets
+    				<b class="caret"></b>
+    				</a>
+    				<ul class="dropdown-menu">
+    					<% Office.all.each do |o| %>
 
-					<li><%= link_to raw('<i class="icon-tasks icon-black"></i> Assets'), root_path %></li>
-
+								<li class="dropdown-submenu">
+									<a tabindex="-1" href="#"><%= o.office %></a>
+									<ul class="dropdown-menu">
+      							<li><%= link_to "Active Assets", assets_path(:id => o.id, :f => 'active' ) %></li>
+      							<li><%= link_to "Refresh Assets", assets_path(:id => o.id, :f => 'refresh' ) %></li>
+      							<li><%= link_to "Retired Assets", assets_path(:id => o.id, :f => 'retired' ) %></li>
+    							</ul></li>
+							<% end %>
+						</ul>
+					</li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 						<i class="icon-user icon-black"></i>
 						People
+    				<b class="caret"></b>
+    				</a>
+    				<ul class="dropdown-menu">
+    					<% Office.all.each do |o| %>
 
-      				<b class="caret"></b>
-      				</a>
-      				<ul class="dropdown-menu">
-      					<% Office.all.each do |o| %>
-
-						<li><%= link_to o.office, people_path( :id => o.id) %></li>
-						<% end %>
-					</ul></li>
-					
+								<li><%= link_to o.office, people_path( :id => o.id) %></li>
+							<% end %>
+						</ul>
+					</li>
 			</ul>
 			<ul class="nav pull-right">
 <li class="dropdown">

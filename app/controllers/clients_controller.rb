@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   
   def index
     @clients = Client.all
-
+    @client = Client.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clients }
