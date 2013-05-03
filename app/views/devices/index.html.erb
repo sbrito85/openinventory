@@ -1,4 +1,12 @@
 
+<%= form_tag import_devices_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= button_tag(:type => 'submit', :class => 'btn btn-success') do %>
+        Import <i class="icon-circle-arrow-up icon-white"></i>
+      <% end %>
+    <% end %>
+
+
 <%= link_to raw('<i class="icon-plus icon-white"></i>'), "#newDeviceModal", :data => {:toggle=>"modal"} , :class => "btn btn-primary pull-right" %>
 
 

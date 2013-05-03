@@ -7,7 +7,9 @@ Openinventory::Application.routes.draw do
   end
 
 
-  resources :assets 
+  resources :assets do
+    collection { post :import }
+  end
 
 
   devise_for :users
@@ -15,7 +17,9 @@ Openinventory::Application.routes.draw do
   resources :offices
 
 
-  resources :devices
+  resources :devices do
+    collection { post :import }
+  end
 
 
   resources :clients

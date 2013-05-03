@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :asset
-
+  
   Devise.setup do |config|
   	config.case_insensitive_keys = [:username]
 	end

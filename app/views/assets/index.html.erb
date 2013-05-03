@@ -2,6 +2,7 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 <div>
+  
   <div class="pull-right">
     <%= link_to image_tag("excel.png"), assets_path(format: "xls"), :class => "hidden-phone" %>
     <%= link_to raw('<i class="icon-plus icon-white"></i>'), new_asset_path, :class => 'btn btn-primary hidden-phone' %>
@@ -21,4 +22,5 @@
   <div class="tab-pane active" id="finance">
   </div>
 </div>
+
 

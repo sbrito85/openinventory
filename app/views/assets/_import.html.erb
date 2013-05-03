@@ -1,0 +1,24 @@
+<div id="importModal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4>Import Assets</h4>
+	</div>
+	<div class="well">
+		<strong>When importing a XLS or XLSX, please make sure the following headers exist:</strong></br>
+		<strong>assigned_to</strong> - User the asset is assigned to</br>
+		<strong>asset</strong> - Asset Tag Number</br>
+		<strong>office</strong> - The office the asset belongs to(Office must be within offices)</br>
+		<strong>device</strong> - The device model(Device must be within devices)</br>
+		<strong>serial</strong> - The serial number the device belongs to</br>
+		<strong>aquired</strong> - The acquired date of the asset</br>
+		<strong>refresh</strong> - The refresh date of the asset</br>
+	</div>
+	<div class="modal-footer">
+		<%= form_tag import_assets_path, multipart: true do %>
+		  <%= file_field_tag :file %>
+		  <%= button_tag(:type => 'submit', :class => 'btn btn-success') do %>
+				Import <i class="icon-circle-arrow-up icon-white"></i>
+			<% end %>
+		<% end %>
+	</div>
+</div>

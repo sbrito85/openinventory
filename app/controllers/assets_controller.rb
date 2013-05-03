@@ -10,13 +10,14 @@ class AssetsController < ApplicationController
       session[:f]= params[:f]
     end
     if session[:f] == 'active'
-      @assets = Asset.where("disposed = ? AND office_id = ?", false, session[:id]).order(sort_column + " " + sort_direction).page(params[:page]).per_page(50).search(params[:search])
+      puts session[:f]
+      @assets = Asset.where("(disposed = ? OR disposed IS ?) AND office_id = ?", false, nil, session[:id]).order(sort_column + " " + sort_direction).page(params[:page]).per_page(50).search(params[:search])
     elsif session[:f]== 'retired'
       @assets= Asset.where("disposed = ? AND office_id = ?", true, session[:id]).page(params[:page]).per_page(50).search(params[:search]) #disposed assets
     elsif session[:f]== 'refresh'
-      @assets = Asset.where("disposed = ? AND refresh <= ? AND office_id = ?", false, Date.today + 100, session[:id]).page(params[:page]).per_page(50).search(params[:search])#refresh
+      @assets = Asset.where("(disposed = ? OR disposed IS ?) AND refresh <= ? AND office_id = ?", false,nil, Date.today + 100, session[:id]).page(params[:page]).per_page(50).search(params[:search])#refresh
     else
-      @assets = Asset.where("office_id = ?",  session[:id]).page(params[:page]).per_page(50).search(params[:search]) #refresh
+      @assets = Asset.order(:asset).page(params[:page]).per_page(50).search(params[:search])
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -97,7 +98,11 @@ class AssetsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+  def import
+    Asset.import(params[:file], current_user.id)
+    redirect_to assets_path, notice: "Assets imported."
+  end
+
   private
 
   def sort_column
@@ -107,4 +112,5 @@ class AssetsController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+  
 end

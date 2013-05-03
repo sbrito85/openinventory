@@ -47,7 +47,9 @@ class Person < ActiveRecord::Base
       searchbase = o.ou + ',' + domain.dn
       puts searchbase
       ldap.search(:base => searchbase, :filter => join_filter, :attrs => attrs) do |entry|
+
         username = entry.Name.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
+        puts username
         title = entry.title.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
         department = entry.department.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')
         office = entry.physicalDeliveryOfficeName.to_s.strip.gsub(/\[\"/,'').gsub(/\"\]/,'')

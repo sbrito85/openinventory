@@ -9,6 +9,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", "~> 3.0"
 gem 'rmagick', '2.13.2'
+gem "net-ldap", "~> 0.4.0", :git => "https://github.com/ruby-ldap/ruby-net-ldap.git"
+gem 'roo'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -24,6 +26,10 @@ group :development do
   gem 'sqlite3'
   gem 'rb-fsevent', '~> 0.9'
 end
+group :production do
+  #gem 'mysql2'
+end
+
 group :assets do
   gem "audited-activerecord", "~> 3.0"
   gem 'sass-rails',   '~> 3.2.3'

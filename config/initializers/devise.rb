@@ -12,7 +12,7 @@ Devise.setup do |config|
   # config.ldap_ad_group_check = false
   
   #Uncomment to enable Active Directory Auth "domain\username"
-  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{login}" }
+  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{login}".force_encoding("ASCII-8BIT") }
   
   
   # ==> Mailer Configuration

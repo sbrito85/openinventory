@@ -80,4 +80,8 @@ class DevicesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def import
+    Device.import(params[:file], current_user.id)
+    redirect_to devices_path, notice: "Devices imported."
+  end
 end

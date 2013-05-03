@@ -1,3 +1,4 @@
+<%= render 'assets/import' %>
 <% if Office.all.count == 0 or Domain.all.count == 0 or Device.count == 0 %>
   <div class="hero-unit">
     <h1>Welcome to Open Inventory!</h1>
@@ -24,7 +25,7 @@
     <div class="span3">
       <strong>Clients:</strong> <%= link_to Client.all.count, clients_path %>
     </div>
-
+    </br><%= link_to "Import Assets", "#importModal", :data => {:toggle=>"modal"} , :class => "btn btn-success" %>
   </div>
   </div>
   <div class="row-fluid">
