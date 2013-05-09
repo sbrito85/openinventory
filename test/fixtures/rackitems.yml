@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  asset_id: 1
+  unitsize: 1
+  positition: MyString
+  ipaddress: MyString
+  comments: MyText
+  rack_id: 1
+
+two:
+  asset_id: 1
+  unitsize: 1
+  positition: MyString
+  ipaddress: MyString
+  comments: MyText
+  rack_id: 1

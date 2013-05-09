@@ -1,0 +1,8 @@
+<tr>
+  <td><%= link_to serverrack.name, serverrack %></td>
+  <td><%= serverrack.totalunits %></td>
+  <td><%= serverrack.serverroom.name %></td>
+  <td><%= link_to 'Show', serverrack %></td>
+  <td><%= link_to 'Edit', edit_serverrack_path(serverrack) %></td>
+  <td><%= link_to 'Destroy', serverrack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

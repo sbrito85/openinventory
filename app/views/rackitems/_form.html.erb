@@ -1,0 +1,15 @@
+<%= simple_form_for(@rackitem, html: {class: "form-horizontal",:autocomplete => :off}) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :rackasset, :as => :string, :input_html => {  :'data-provide' => "typeahead", :'data-source' => [get_assets.to_s] } %>
+    <%= f.input :unitsize %>
+    <%= f.input :position %>
+    <%= f.input :ipaddress %>
+    <%= f.input :comments, :as => :string %>
+    <%= f.input :serverrack_id, :selected => get_rack(@rackitem.serverrack_id), :collection => Serverrack.order(:name), :label_method => :name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

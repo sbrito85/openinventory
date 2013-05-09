@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="well span4 offset3">
+   
+      <b>Asset:</b> <%= link_to @rackitem.asset.asset, edit_rackitem_path(@rackitem) %></br>
+      <b>Unitsize:</b> <%= @rackitem.unitsize %></br>
+      <b>Positition:</b> <%= @rackitem.position %> </br>
+      <b>Ipaddress:</b> <%= @rackitem.ipaddress %></br>
+      <b>Comments:</b> <%= @rackitem.comments %></br>
+      <b>Rack:</b> <%= link_to @rackitem.serverrack.name, @rackitem.serverrack %></br>
+
+
+  </div>
+</div>
+

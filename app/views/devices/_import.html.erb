@@ -1,0 +1,21 @@
+<div id="importDeviceModal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4>Import Assets</h4>
+	</div>
+	<div class="well">
+		<strong>When importing a XLS or XLSX, please make sure the following headers exist:</strong></br>
+		<strong>make</strong> - The manufacturer of the device</br>
+		<strong>model</strong> - The model/model number of the device</br>
+		<strong>assettype</strong> - The category of the device(IE laptop, server...)</br>
+		<strong>image_remote_url</strong> - The URL for the device image.</br>
+	</div>
+	<div class="modal-footer">
+		<%= form_tag import_devices_path, multipart: true do %>
+		  <%= file_field_tag :file %>
+		  <%= button_tag(:type => 'submit', :class => 'btn btn-success') do %>
+				Import <i class="icon-circle-arrow-up icon-white"></i>
+			<% end %>
+		<% end %>
+	</div>
+</div>

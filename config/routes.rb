@@ -1,4 +1,13 @@
 Openinventory::Application.routes.draw do
+  resources :serverrooms
+
+
+  resources :serverracks
+
+
+  resources :rackitems
+
+
   resources :domains
 
 

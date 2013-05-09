@@ -8,7 +8,7 @@ class CreateAssets < ActiveRecord::Migration
       t.string :assigned_to
       t.string :po_num
       t.text :comments
-      t.date :aquired
+      t.date :acquired
       t.date :refresh
       t.string :machine_name
       t.boolean :disposed

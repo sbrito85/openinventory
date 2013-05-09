@@ -82,6 +82,6 @@ class DevicesController < ApplicationController
   end
   def import
     Device.import(params[:file], current_user.id)
-    redirect_to devices_path, notice: "Devices imported."
+    redirect_to :back, notice: "Devices imported."
   end
 end

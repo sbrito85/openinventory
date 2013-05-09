@@ -1,0 +1,60 @@
+<div class="row-fluid">
+	<div class="span6">
+		<div class="well">
+	  <%= link_to raw('<i class="icon-plus icon-white"></i>Rack Item'), "#newRackitemModal",:data => {:toggle=>"modal"}, class: "btn btn-primary pull-right" %>
+		<strong>Name:</strong> <%= @serverrack.name %></br>
+		<strong>Total Us:</strong> <%= @serverrack.totalunits %></br>		
+		</div>
+	</div>
+	<div class="span6">
+		<div class="well">
+			<strong>Server Room:</strong> <%= link_to @serverrack.serverroom.name,  @serverrack.serverroom %></br>
+			<strong>Office:</strong> <%= @serverrack.serverroom.office.office %></br>
+		</div>
+	</div>
+</div>
+	<% @serverrack.rackitem.order('position').each do |r|%>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="well clearfix">
+				<div class="span4">
+					<div class="media">
+							<a class="pull-left" href="#">
+								<% if r.asset.device.image_file_name.nil? %>
+									<%= image_tag "monitor.png", :class => "media-object" %>
+								<% else %>
+									<%= image_tag r.asset.device.image(:small) %>
+								<%end%>
+							</a>
+							<div class="media-body">
+								<div class="media">
+
+									<h4 class="media-heading"> <%= r.asset.device.make %> <%= r.asset.device.model%></br> 
+										<%= link_to r.asset.asset, asset_path(r.asset_id) %></h4>
+										<%= link_to 'Remove', r, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-mini" %>
+										<%= link_to 'Edit', edit_rackitem_path(r) , class: "btn btn-mini btn-info"%>
+
+						 	</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="span4">
+					<b>Serial:</b> <%= r.asset.serial %></br>
+				  <b>Name:</b> <%= r.asset.machine_name %></br>
+				  <b>Refresh:</b> <%= r.asset.refresh %></br>
+				</div>
+				<div class="span3">
+
+				  <h4> <%= r.ipaddress %></h4>
+				  
+				</div>
+				<div class="span1">
+					<h4><%= r. position %></h4>
+			  </div>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<%= render 'rackitems/new' %>

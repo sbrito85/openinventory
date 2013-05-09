@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502235816) do
+ActiveRecord::Schema.define(:version => 20130508213920) do
 
   create_table "assets", :force => true do |t|
     t.integer  "device_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130502235816) do
     t.string   "assigned_to"
     t.string   "po_num"
     t.text     "comments"
-    t.date     "aquired"
+    t.date     "acquired"
     t.date     "refresh"
     t.string   "machine_name"
     t.boolean  "disposed"
@@ -112,6 +112,42 @@ ActiveRecord::Schema.define(:version => 20130502235816) do
   end
 
   add_index "people", ["office_id"], :name => "index_people_on_office_id"
+
+  create_table "rackitems", :force => true do |t|
+    t.integer  "asset_id"
+    t.integer  "unitsize"
+    t.string   "position"
+    t.string   "ipaddress"
+    t.text     "comments"
+    t.integer  "serverrack_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "rackasset"
+  end
+
+  add_index "rackitems", ["asset_id"], :name => "index_rackitems_on_asset_id"
+  add_index "rackitems", ["serverrack_id"], :name => "index_rackitems_on_serverrack_id"
+
+  create_table "serverracks", :force => true do |t|
+    t.string   "name"
+    t.integer  "totalunits"
+    t.integer  "serverroom_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "serverracks", ["name"], :name => "index_serverracks_on_name"
+  add_index "serverracks", ["serverroom_id"], :name => "index_serverracks_on_serverroom_id"
+
+  create_table "serverrooms", :force => true do |t|
+    t.string   "name"
+    t.integer  "office_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "serverrooms", ["name"], :name => "index_serverrooms_on_name"
+  add_index "serverrooms", ["office_id"], :name => "index_serverrooms_on_office_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to serverroom.name, serverroom%></td>
+  <td><%= serverroom.office.office %></td>
+  <td><%= link_to 'Show', serverroom %> |
+  <%= link_to 'Edit', edit_serverroom_path(serverroom) %> |
+  <%= link_to 'Destroy', serverroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

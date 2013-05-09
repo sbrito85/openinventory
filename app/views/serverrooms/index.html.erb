@@ -1,0 +1,19 @@
+<div class="pull-right">
+  <%= link_to raw('<i class="icon-plus icon-white"></i>'), "#newServerroomModal",:data => {:toggle=>"modal"}, class: "btn btn-primary" %>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Server Room Name</th>
+    <th>Office</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <%= render @serverrooms %>
+  </tbody>
+</table>
+<%= render 'new' %>
+<br />
+
+

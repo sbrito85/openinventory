@@ -1,9 +1,10 @@
 class Asset < ActiveRecord::Base
-  attr_accessible :person_id, :aquired, :asset, :assigned_to, :comments, :disposed, :user_id, :machine_name, :device_id, :office_id, :po_num, :refresh, :serial,:client, :created_at, :updated_at, :order_num
+  attr_accessible :person_id, :acquired, :asset, :assigned_to, :comments, :disposed, :user_id, :machine_name, :device_id, :office_id, :po_num, :refresh, :serial,:client, :created_at, :updated_at, :order_num
   belongs_to :user
   belongs_to :office
   belongs_to :device
   belongs_to :person
+  has_one :rackitem
 
   validates :office_id, :presence => true
   validates :assigned_to, :presence => true
