@@ -1,3 +1,4 @@
+<% if current_user.admin? %>
 <%= render 'assets/import' %>
 <% if Office.all.count == 0 or Domain.all.count == 0 or Device.count == 0 %>
   <div class="hero-unit">
@@ -55,4 +56,9 @@
     <% end %>
   </div>
 </div>
+<% end %>
+<% else %>
+  <div class="hero-unit">
+    <h1>You do not have access</h1>
+    </div>
 <% end %>

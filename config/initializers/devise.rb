@@ -3,16 +3,16 @@
 Devise.setup do |config|
   # ==> LDAP Configuration 
   config.ldap_logger = true
-   config.ldap_create_user = true
+  config.ldap_create_user = true
   # config.ldap_update_password = true
   # config.ldap_config = "#{Rails.root}/config/ldap.yml"
   # config.ldap_check_group_membership = false
-  #config.ldap_check_attributes = false
+  #config.ldap_check_attributes = true
   config.ldap_use_admin_to_bind = true
   # config.ldap_ad_group_check = false
   
   #Uncomment to enable Active Directory Auth "domain\username"
-  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{login}".force_encoding("ASCII-8BIT") }
+  config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{login}" }
   
   
   # ==> Mailer Configuration

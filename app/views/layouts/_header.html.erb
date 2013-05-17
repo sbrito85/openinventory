@@ -10,6 +10,7 @@
 		<% if user_signed_in? %>
 		<div class="nav-collapse collapse">
 			<ul class="nav">
+				<% if current_user.admin? %>
 				<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 						<i class="icon-tasks icon-black"></i>
 						Assets
@@ -28,6 +29,7 @@
 							<% end %>
 						</ul>
 					</li>
+					<%end%>
 					<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 						<i class="icon-user icon-black"></i>
 						People
@@ -40,6 +42,7 @@
 							<% end %>
 						</ul>
 					</li>
+					<% if current_user.admin? %>
 					<li class="dropdown"><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 						<i class="icon-hdd icon-black"></i>
 						Server Rooms
@@ -52,25 +55,32 @@
 							<% end %>
 						</ul>
 					</li>
+					<%end%>
 			</ul>
 
 
 				<ul class="nav pull-right">
+
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
 							Setup
 			      	<b class="caret"></b>
 				    </a>
+				   
 	  				<ul class="dropdown-menu">
-							<li><%= link_to raw('<i class="icon-star icon-black"></i> Clients'), clients_path %></li>
-	    				<li><%= link_to raw('<i class="icon-list-alt icon-black"></i> Devices'), devices_path %></li>
-	    				<li><%= link_to raw('<i class="icon-globe icon-black"></i> Domains'), domains_path %></li>
-	    				<li><%= link_to raw('<i class="icon-home icon-black"></i> Offices'), offices_path %></li>
+	  					 <% if current_user.admin? %>
+								<li><%= link_to raw('<i class="icon-star icon-black"></i> Clients'), clients_path %></li>
+		    				<li><%= link_to raw('<i class="icon-list-alt icon-black"></i> Devices'), devices_path %></li>
+		    				<li><%= link_to raw('<i class="icon-globe icon-black"></i> Domains'), domains_path %></li>
+		    				<li><%= link_to raw('<i class="icon-home icon-black"></i> Offices'), offices_path %></li>
+			    		<%end%>
 	    				<li class="nav-header"><%= current_user.username %></li>
 	    				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 	    			</ul>
+	    		
 					</li>
 				</ul>
+				<% if current_user.admin? %>
 				<ul class="nav pull-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
@@ -83,6 +93,7 @@
 	    			</ul>
 					</li>
 				</ul>
+				<% end %>
 			</div>
 			<% end %>
 		</div>

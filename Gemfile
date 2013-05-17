@@ -4,12 +4,12 @@ gem 'rails', '3.2.12'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
-gem 'devise_ldap_authenticatable'
+gem 'devise_ldap_authenticatable', :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
 gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", "~> 3.0"
 gem 'rmagick', '2.13.2'
-gem "net-ldap", "~> 0.4.0", :git => "https://github.com/ruby-ldap/ruby-net-ldap.git"
+gem "net-ldap", "~> 0.3.1"
 gem 'roo'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
